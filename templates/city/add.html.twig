@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add City
+{% endblock %}
+
+{% block body %}
+	<div class="container col-md-6 text-center mt-3 card p-2 bg-warning">
+		<h1 class="text text-danger">Add city</h1>
+		{#rendering form#}
+		{{form_start (cityForm)}}
+		{{form_widget (cityForm)}}
+		<input class="btn btn-primary" type="submit" value="Add">
+		{{form_end (cityForm)}}
+	{% endblock %}

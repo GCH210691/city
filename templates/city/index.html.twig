@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CityController!
+{% endblock %}
+
+{% block body %}
+	{# nhận thông báo (flash) từ controller #}
+	<div class="container-fluid">
+		{% for message in app.session.flashBag.get('Success')%}
+			<span class="alert alert-success mt-3 mb-3">{{ message }}</span>
+		{% endfor %}
+		{% for message in app.session.flashBag.get('Error')%}
+			<span class="alert alert-danger mt-3 mb-3">{{ message }}</span>
+		{% endfor %}
+	</div>
+	{# tạo bảng để hiển thị dữ liệu từ database #}
+	<table class="table table-borderd mt-4">
+		<tr class="bg-warning">
+			<th colspan="5" class="h3 text text-danger">City List</th>
+			<th>
+				<a href="{{path('city_add')}}" class="btn btn-primary">add
+				</a>
+			</th>
+		</tr>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Picture</th>
+		</tr>
+		{% for city in showCity %}
+			<tr>
+				<td>{{city.id}}</td>
+				<td>{{city.cityName}}</td>
+				<td>
+					<a href="http://">
+						<img src="{{city.cityPicture}}" width="100" heigh="100">
+					</a>
+				</td>
+				<td>
+					<a href="{{ path('city_detail', {'id' : city.id }) }}" class="btn btn-info">View</a>
+					<a href="{{ path('city_delete',{'id': city.id}) }}" class="btn btn-danger" onclick="return confirm('Are you sure to delete this country ?');">delete
+					</a>
+					<a href="{{ path('city_edit',{'id': city.id}) }}" class="btn btn-warning">edit
+					</a>
+				</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% endblock %}
