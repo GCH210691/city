@@ -85,7 +85,7 @@ class CityController extends AbstractController
         );
     }
     #[Route('/detail/{id}', name: 'city_detail')] #view the detail of a city function
-    public function viewTodoDetail($id, CityRepository $cityRepository)
+    public function viewCityDetail($id, CityRepository $cityRepository)
     {
         $city = $cityRepository->find($id);
         if ($city == null) {
